@@ -18,5 +18,5 @@ phases:
 artifacts:
   name: hello-dev-jar
   type: zip
-  files:
-    - 'build/libs/*.jar'
+  location: app/src/main/java/Hello/dev/App.class
+ 
