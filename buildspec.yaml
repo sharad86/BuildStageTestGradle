@@ -5,16 +5,17 @@ runAs: root
 shell: bash
 env:
   variables:
-    "testEnv" : "testValue"
-phases:
+    "testEnv" : "testValue1"
+  exportedVariables:
+    - testEnv
+steps:
   install:
    commands:
      - echo Entering install phase...
      - echo Nothing to do now
   build:
     commands:
-     - echo Build started on `date`
-     - gradle build
+     - ./gradlew build
 artifacts:
   name: hello-dev-jar
   type: zip
