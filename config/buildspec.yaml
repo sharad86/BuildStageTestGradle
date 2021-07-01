@@ -5,18 +5,27 @@ runAs: root
 shell: bash
 env:
   variables:
-    "testEnv" : "testValue"
-phases:
-  install:
-   commands:
-     - echo Entering install phase...
-     - echo Nothing to do now
-  build:
-    commands:
-     - echo Build started on `date`
-     - gradle build
-artifacts:
-  name: hello-dev-jar
-  type: zip
-  location: app/src/main/java/Hello/dev/App.class
+    "testEnv" : "testValue1"
+  exportedVariables:
+    - testEnv
+steps:
+  - type: Command
+    timeoutInSeconds: 400
+    name: "trtdtd"
+    command: |
+      export testEnv=123
+      echo $testEnv > output1.txt
+  - type: Command
+    timeoutInSeconds: 400
+    name: "build"
+    command: |
+      echo Build started on `date`
+      chmod +x gradlew
+      ./gradlew build
+
+outputArtifacts:
+  - name: output1
+    type: BINARY
+    location: output1.txt
+
  
